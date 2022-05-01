@@ -1,0 +1,28 @@
+{
+  "name": "fiap-brq-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorranyabrantes/fiap-brq-challenge.git"
+  },
+  "author": "Lorrany Abrantes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lorranyabrantes/fiap-brq-challenge/issues"
+  },
+  "homepage": "https://github.com/lorranyabrantes/fiap-brq-challenge#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "oracledb": "^5.3.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
