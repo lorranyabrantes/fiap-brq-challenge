@@ -1,6 +1,6 @@
 import { execute } from "../DbConnection";
 
-export const GetSkill = (callback) => {
+export const GetCertificate = (callback) => {
   execute("SELECT * FROM TB_BRQ_CERT", (result) => {
     callback(result);
   });
