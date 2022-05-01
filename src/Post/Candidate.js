@@ -1,7 +1,6 @@
 import { execute } from "../DbConnection";
 
 export const PostCandidate = (body, callback) => {
-  console;
   const candidate = `INSERT INTO TB_BRQ_CANDIDATO
     (
         nm_candidato,
@@ -23,7 +22,21 @@ export const PostCandidate = (body, callback) => {
               returning cd_candidato into :id`;
 
   const insertCandidate = (resultCandidate) => {
-    callback({ id: resultCandidate.outBinds.id[0] });
+    const idCandidato = resultCandidate.outBinds.id[0];
+
+    body.skills.map((item) => {
+      const skill = `INSERT INTO TB_BRQ_C_H (cd_candidato, cd_habilidade) VALUES (${idCandidato}, ${item})`;
+
+      execute(skill, () => {});
+    });
+
+    body.certificates.map((item) => {
+      const certificate = `INSERT INTO TB_BRQ_C_C (cd_candidato, cd_certificacao) VALUES (${idCandidato}, ${item})`;
+
+      execute(certificate, () => {});
+    });
+
+    callback({ id: idCandidato });
   };
 
   execute(candidate, insertCandidate, true);
