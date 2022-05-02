@@ -1,22 +1,36 @@
 import { execute } from "../DbConnection";
 
 export const GetCandidate = (params, callback) => {
-  const select = `SELECT * FROM TB_BRQ_CANDIDATO WHERE cd_candidato=${params.id}`;
+  let select = "SELECT * FROM TB_BRQ_CANDIDATO WHERE";
+
+  if (params.id) {
+    select = `${select} cd_candidato=${params.id}`;
+  } else if (params.email) {
+    select = `${select} ds_email='${params.email}'`;
+  } else if (params.cpf) {
+    select = `${select} sq_cpf=${params.cpf}`;
+  } else {
+    callback({});
+    return false;
+  }
+
+  console.log(select);
 
   const data = (result) => {
     const {
       rows: [candidate],
     } = result;
 
-    const selectSkill = `SELECT * FROM TB_BRQ_C_H WHERE cd_candidato=${params.id}`;
+    const selectSkill = `SELECT * FROM TB_BRQ_C_H WHERE cd_candidato=${candidate[0]}`;
 
     const dataSkill = (resultSkill) => {
       const { rows: skills } = resultSkill;
 
-      const selectCertificate = `SELECT * FROM TB_BRQ_C_C WHERE cd_candidato=${params.id}`;
+      const selectCertificate = `SELECT * FROM TB_BRQ_C_C WHERE cd_candidato=${candidate[0]}`;
 
       const dataCertificate = (resultCertificate) => {
         const { rows: certificates } = resultCertificate;
+
         callback({
           id: candidate[0],
           name: candidate[1],
