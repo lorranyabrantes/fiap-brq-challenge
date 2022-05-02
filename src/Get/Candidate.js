@@ -14,8 +14,6 @@ export const GetCandidate = (params, callback) => {
     return false;
   }
 
-  console.log(select);
-
   const data = (result) => {
     const {
       rows: [candidate],

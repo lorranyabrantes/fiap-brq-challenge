@@ -28,7 +28,6 @@ export const GetCandidates = (params, callback) => {
     const { rows: candidate } = result;
 
     const reduced = candidate.reduce((acc, actual, index) => {
-      console.log(acc, actual, index);
       if (actual[0] in acc) {
         acc[actual[0]] = [...acc[actual[0]], actual];
       } else {
