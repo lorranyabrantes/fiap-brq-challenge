@@ -24,33 +24,31 @@ app.get("/candidate", async (req, res) => {
 
 app.post("/candidate", function (req, res) {
   PostCandidate(req.body, (data) => {
-    res.json({ data });
+    res.json(data);
   });
 });
 
 app.get("/certificate", async (req, res) => {
-  GetCertificate((response) => {
-    const data = response.rows;
+  GetCertificate((data) => {
     res.json({ data });
   });
 });
 
 app.post("/certificate", function (req, res) {
   PostCertificate(req.body, (data) => {
-    res.json({ data });
+    res.json(data);
   });
 });
 
 app.get("/skill", async (req, res) => {
-  GetSkill((response) => {
-    const data = response.rows;
+  GetSkill((data) => {
     res.json({ data });
   });
 });
 
 app.post("/skill", function (req, res) {
   PostSkill(req.body, (data) => {
-    res.json({ data });
+    res.json(data);
   });
 });
 
