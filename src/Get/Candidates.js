@@ -27,6 +27,11 @@ export const GetCandidates = (params, callback) => {
   const data = (result) => {
     const { rows: candidate } = result;
 
+    if (!candidate) {
+      callback({});
+      return false;
+    }
+
     const reduced = candidate.reduce((acc, actual, index) => {
       if (actual[0] in acc) {
         acc[actual[0]] = [...acc[actual[0]], actual];

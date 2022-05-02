@@ -14,10 +14,19 @@ export const GetCandidate = (params, callback) => {
     return false;
   }
 
+  console.log(select);
+
   const data = (result) => {
     const {
       rows: [candidate],
     } = result;
+
+    console.log(candidate);
+
+    if (!candidate) {
+      callback({});
+      return false;
+    }
 
     const selectSkill = `SELECT * FROM TB_BRQ_C_H WHERE cd_candidato=${candidate[0]}`;
 
