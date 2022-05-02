@@ -12,10 +12,6 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  res.json({ index: "index" });
-});
-
 app.get("/candidate", async (req, res) => {
   GetCandidate(req.query, (response) => {
     const data = response;
