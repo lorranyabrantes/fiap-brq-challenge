@@ -22,6 +22,13 @@ app.get("/candidate", async (req, res) => {
   });
 });
 
+app.get("/candidate/:id", async (req, res) => {
+  GetCandidate(req.params, (response) => {
+    const data = response;
+    res.json({ data });
+  });
+});
+
 app.post("/candidate", function (req, res) {
   PostCandidate(req.body, (data) => {
     res.json(data);
