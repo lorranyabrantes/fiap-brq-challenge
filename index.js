@@ -1,5 +1,6 @@
 import express from "express";
 import { GetCandidate } from "./src/Get/Candidate";
+import { GetCandidates } from "./src/Get/Candidates";
 import { GetCertificate } from "./src/Get/Certificate";
 import { GetSkill } from "./src/Get/Skill";
 import { PostCandidate } from "./src/Post/Candidate";
@@ -32,6 +33,13 @@ app.get("/candidate/:id", async (req, res) => {
 app.post("/candidate", function (req, res) {
   PostCandidate(req.body, (data) => {
     res.json(data);
+  });
+});
+
+app.get("/candidates", async (req, res) => {
+  GetCandidates(req.query, (response) => {
+    const data = response;
+    res.json({ data });
   });
 });
 
